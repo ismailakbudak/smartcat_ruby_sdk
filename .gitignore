@@ -15,3 +15,6 @@
 
 # Result package
 *.gem
+
+# Ignore secret files
+.pronto.yml

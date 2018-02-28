@@ -1,0 +1,9 @@
+DuplicateMethodCall:
+  enabled: false
+
+FeatureEnvy:
+  enabled: false
+
+TooManyStatements:
+  enabled: true
+  max_statements: 6
