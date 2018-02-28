@@ -12,3 +12,6 @@
 
 # RubyMine files
 .idea/
+
+# Result package
+*.gem
