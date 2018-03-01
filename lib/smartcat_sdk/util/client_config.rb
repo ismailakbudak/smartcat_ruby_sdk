@@ -19,9 +19,9 @@ module SmartcatSDK
         attr_accessor attribute
       end
 
-      def initialize(opts={})
+      def initialize(opts = {})
         DEFAULTS.each do |attribute, value|
-          send("#{attribute}=".to_sym, opts.fetch(attribute, value))
+          send("#{attribute}=".to_sym, opts.fetch(attribute) { value })
         end
       end
     end

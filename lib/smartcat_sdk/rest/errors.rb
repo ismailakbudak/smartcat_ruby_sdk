@@ -5,7 +5,7 @@ module SmartcatSDK
     class RequestError < StandardError
       attr_reader :code
 
-      def initialize(message, code=nil)
+      def initialize(message, code = nil)
         super message
         @code = code
       end
@@ -14,11 +14,10 @@ module SmartcatSDK
     class SDKError < StandardError
       attr_reader :code
 
-      def initialize(message, code=nil)
+      def initialize(message, code = nil)
         super message
         @code = code
       end
     end
-
   end
 end

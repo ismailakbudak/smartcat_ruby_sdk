@@ -1,3 +1,12 @@
+"lib/smartcat_sdk/rest":
+  InstanceVariableAssumption:
+    enabled: false
+  TooManyInstanceVariables:
+    max_instance_variables: 6
+
+IrresponsibleModule:
+  enabled: false
+
 DuplicateMethodCall:
   enabled: false
 
@@ -7,3 +16,6 @@ FeatureEnvy:
 TooManyStatements:
   enabled: true
   max_statements: 6
+
+LongParameterList:
+  max_params: 4

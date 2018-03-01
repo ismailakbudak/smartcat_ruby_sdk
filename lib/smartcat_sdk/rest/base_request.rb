@@ -1,20 +1,13 @@
 module SmartcatSDK
   module REST
     class BaseRequest
-      RUBY_INFO = "(#{RUBY_ENGINE}/#{RUBY_PLATFORM} #{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})".freeze
-      HTTP_HEADERS = {
-        'Accept'          => 'application/json',
-        'Accept-Charset'  => 'utf-8',
-        'User-Agent'      => "smartcat_sdk/#{SmartcatSDK::VERSION} #{RUBY_INFO}"
-      }.freeze
-
       def initialize(*args)
         options     = args.last.is_a?(Hash) ? args.pop : {}
         @config     = SmartcatSDK::Util::ClientConfig.new options
         @user       = args[0] || nil
         @password   = args[1] || nil
-        raise ArgumentError, 'Account ID is required' if @user.nil?
-        raise ArgumentError, 'API key is required' if @password.nil?
+        raise ArgumentError, 'Account ID is required' unless @user
+        raise ArgumentError, 'API key is required' unless @password
         set_up_connection
       end
 
@@ -22,16 +15,13 @@ module SmartcatSDK
 
       ##
       # Prepare http request
-      # rubocop:disable Metrics/AbcSize
-      # rubocop:disable Metrics/MethodLength
-      def prepare_request(method, path, params: {})
+      # :reek:TooManyStatements { enabled: false }
+      def prepare_request(method, path, params: {}, headers: {})
         request_path = @config.host
         request_path += "/api/integration/v1/#{path}"
         uri = URI.parse(request_path)
-        uri.query = URI.encode_www_form(params) if %w[get delete].include?(method)
-        method_class = Net::HTTP.const_get method.to_s.capitalize
-        request = method_class.new(uri.to_s, HTTP_HEADERS)
-        request.form_data = params if %w[post put].include?(method)
+        uri.query = URI.encode_www_form(params) if %w[get delete post_multipart].include?(method)
+        request = SmartcatSDK::Util::Request.prepare(headers, method, params, uri)
         request.basic_auth(@user, @password)
         connect_and_send(request)
       end
@@ -40,6 +30,9 @@ module SmartcatSDK
 
       ##
       # Set up and cache a Net::HTTP object to use when making requests.
+      # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/MethodLength
+      # :reek:TooManyStatements { enabled: false }
       def set_up_connection
         uri = URI.parse(@config.host)
         @http = Net::HTTP.new(
@@ -61,6 +54,7 @@ module SmartcatSDK
         @http.open_timeout = @config.timeout
         @http.read_timeout = @config.timeout
       end
+      # rubocop:enable Metrics/AbcSize
 
       ##
       # Send an HTTP request using the cached <tt>@http</tt> object and
@@ -68,7 +62,8 @@ module SmartcatSDK
       # Net::HTTP::Request and Net::HTTP::Response objects as
       # <tt>@last_request</tt> and <tt>@last_response</tt> to allow for
       # inspection later.
-      def connect_and_send(request, is_file = false)
+      # :reek:TooManyStatements { enabled: false }
+      def connect_and_send(request, type: :json)
         @last_request = request
         retries_left = @config.retry_limit
         begin
@@ -81,23 +76,38 @@ module SmartcatSDK
           retries_left -= 1
           retry
         end
-        handle_response_errors(handle_response(is_file, response), response)
+        Builder.handle(type, response)
       end
+      # rubocop:enable Metrics/MethodLength
 
-      def handle_response_errors(object, response)
-        return object unless response.is_a?(Net::HTTPClientError)
-        raise SmartcatSDK::REST::RequestError.new(object['error'], object['code'])
-      end
+      class Builder
+        # rubocop:disable Metrics/MethodLength
+        def self.handle(type, response)
+          if response.is_a?(Net::HTTPClientError)
+            raise SmartcatSDK::REST::RequestError.new(response, response['code'])
+          end
+          if response.body && !response.body.empty?
+            builder_class = Builder.const_get(type.to_s.capitalize)
+            builder_class.result(response.body)
+          elsif response.is_a?(Net::HTTPBadRequest)
+            {
+              message: 'Bad request',
+              code: 400
+            }
+          end
+        end
+        # rubocop:enable Metrics/MethodLength
 
-      def handle_response(is_file, response)
-        if response.body && !response.body.empty?
-          return response.body if is_file
-          MultiJson.load(response.body)
-        elsif response.is_a?(Net::HTTPBadRequest)
-          {
-            message: 'Bad request',
-            code: 400
-          }
+        class Body
+          def self.result(body)
+            body
+          end
+        end
+
+        class Json
+          def self.result(body)
+            MultiJson.load(body)
+          end
         end
       end
     end
