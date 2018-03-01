@@ -1,3 +1,3 @@
-module SmartcatSdk
+module SmartcatSDK
   VERSION = '0.1.0'.freeze
 end

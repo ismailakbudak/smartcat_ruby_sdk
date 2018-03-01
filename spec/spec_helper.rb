@@ -1,5 +1,9 @@
 require 'bundler/setup'
-require 'smartcat_sdk'
+
+Bundler.require(:default, :test)
+
+dir = Pathname.new(__FILE__).dirname + '../lib/smartcat_sdk'
+require dir.expand_path
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -11,4 +15,13 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  # Use color in STDOUT
+  config.color = true
+
+  # Use color not only in STDOUT but also in pagers and files
+  config.tty = true
+
+  # Use the specified formatter
+  config.formatter = :documentation
 end

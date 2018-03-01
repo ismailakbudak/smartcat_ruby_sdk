@@ -6,7 +6,7 @@ require 'date'
 
 Gem::Specification.new do |spec|
   spec.name          = 'smartcat_sdk'
-  spec.version       = SmartcatSdk::VERSION
+  spec.version       = SmartcatSDK::VERSION
   spec.authors       = ['İsmail Akbudak']
   spec.email         = ['ismail.akbudak@lab2023.com']
   spec.summary       = 'SmartCat Ruby SDK.'
@@ -20,7 +20,8 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
-
+  spec.add_runtime_dependency 'multi_json', '~> 1.13', '>= 1.13.1'
+  spec.add_runtime_dependency 'multipart-post', '~> 2.0'
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'pronto', '~> 0.9.5'
   spec.add_development_dependency 'pronto-fasterer', '~> 0.9.0'
