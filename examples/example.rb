@@ -46,3 +46,10 @@ puts project.statistics_build(PROJECT_ID)
 # Post add target language to project
 puts project.add_language(PROJECT_ID, 'de')
 puts project.add_language(PROJECT_ID, 'it')
+
+# Post add document to project
+puts project.add_document(
+  PROJECT_ID,
+  files_model: [{ externalId: 'test1' }, { externalId: 'test2' }],
+  files: %w[files/Test.txt files/Test-2.txt]
+)

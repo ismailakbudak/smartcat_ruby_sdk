@@ -49,6 +49,15 @@ module SmartcatSDK
           "#{@resource}/language?projectId=#{project_id}&targetLanguage=#{target_language}"
         )
       end
+
+      def add_document(project_id, files: [], files_model: [])
+        prepare_request(
+          :post_multipart,
+          "#{@resource}/document?projectId=#{project_id}",
+          params: SmartcatSDK::Util::Project.params(files_model, files),
+          headers: SmartcatSDK::Util::Project.model_headers
+        )
+      end
     end
   end
 end
