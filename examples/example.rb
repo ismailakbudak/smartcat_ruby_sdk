@@ -10,6 +10,9 @@ project = SmartcatSDK::REST::Project.new(ACCOUNT_ID, API_KEY)
 PROJECT_ID = 'EXAMPLE_PROJECT_ID'.freeze
 puts project.get(PROJECT_ID)
 
+# Delete project
+puts project.delete(PROJECT_ID)
+
 # Create project without file
 model = {
   'name' => 'Test',

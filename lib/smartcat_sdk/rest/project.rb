@@ -22,6 +22,10 @@ module SmartcatSDK
       def get(project_id)
         prepare_request(:get, "#{@resource}/#{project_id}")
       end
+
+      def delete(project_id)
+        prepare_request(:delete, "#{@resource}/#{project_id}")
+      end
     end
   end
 end
