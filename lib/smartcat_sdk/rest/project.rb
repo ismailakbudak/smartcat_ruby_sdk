@@ -58,6 +58,18 @@ module SmartcatSDK
           headers: SmartcatSDK::Util::Project.model_headers
         )
       end
+
+      def cancel(project_id)
+        prepare_request(:post, "#{@resource}/cancel?projectId=#{project_id}")
+      end
+
+      def restore(project_id)
+        prepare_request(:post, "#{@resource}/restore?projectId=#{project_id}")
+      end
+
+      def complete(project_id)
+        prepare_request(:post, "#{@resource}/complete?projectId=#{project_id}")
+      end
     end
   end
 end

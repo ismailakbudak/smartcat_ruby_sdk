@@ -53,3 +53,12 @@ puts project.add_document(
   files_model: [{ externalId: 'test1' }, { externalId: 'test2' }],
   files: %w[files/Test.txt files/Test-2.txt]
 )
+
+# Post project cancel
+puts project.cancel(PROJECT_ID)
+
+# Post project restore
+puts project.restore(PROJECT_ID)
+
+# Post project complete
+puts project.complete(PROJECT_ID)
