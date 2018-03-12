@@ -34,6 +34,14 @@ module SmartcatSDK
       def delete(project_id)
         prepare_request(:delete, "#{@resource}/#{project_id}")
       end
+
+      def statistics(project_id)
+        prepare_request(:get, "#{@resource}/#{project_id}/statistics")
+      end
+
+      def statistics_build(project_id)
+        prepare_request(:post, "#{@resource}/#{project_id}/statistics/build")
+      end
     end
   end
 end

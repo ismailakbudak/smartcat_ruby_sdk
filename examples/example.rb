@@ -33,5 +33,12 @@ model = {
   'assignToVendor' => false
 }
 puts project.create(model)
+
 # Create project with files
 puts project.create(model, files: %w[files/Test.txt files/Test-2.txt])
+
+# Get project statistics
+puts project.statistics(PROJECT_ID)
+
+# Post project statistics build
+puts project.statistics_build(PROJECT_ID)
