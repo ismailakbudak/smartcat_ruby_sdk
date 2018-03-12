@@ -14,8 +14,11 @@ module SmartcatSDK
             return Net::HTTP::Post::Multipart.new(uri, params, HTTP_HEADERS.merge(headers))
           end
           method_class = Net::HTTP.const_get method.to_s.capitalize
-          request = method_class.new(uri.to_s, headers)
-          request.form_data = params if %w[post put].include?(method)
+          request = method_class.new(uri, headers)
+          if %w[post put].include?(method.to_s)
+            request.content_type = 'application/json'
+            request.body = JSON.dump(params)
+          end
           request
         end
       end

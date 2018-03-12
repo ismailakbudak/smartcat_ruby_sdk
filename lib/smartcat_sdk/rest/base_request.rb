@@ -20,7 +20,7 @@ module SmartcatSDK
         request_path = @config.host
         request_path += "/api/integration/v1/#{path}"
         uri = URI.parse(request_path)
-        uri.query = URI.encode_www_form(params) if %w[get delete post_multipart].include?(method)
+        uri.query = URI.encode_www_form(params) if %w[get delete post_multipart].include?(method.to_s)
         request = SmartcatSDK::Util::Request.prepare(headers, method, params, uri)
         request.basic_auth(@user, @password)
         connect_and_send(request)

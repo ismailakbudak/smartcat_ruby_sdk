@@ -10,6 +10,14 @@ project = SmartcatSDK::REST::Project.new(ACCOUNT_ID, API_KEY)
 PROJECT_ID = 'EXAMPLE_PROJECT_ID'.freeze
 puts project.get(PROJECT_ID)
 
+# Update project
+model = {
+  'name' => 'Updated name',
+  'description' => 'Updated description',
+  'externalTag' => 'id'
+}
+puts project.update(PROJECT_ID, model)
+
 # Delete project
 puts project.delete(PROJECT_ID)
 

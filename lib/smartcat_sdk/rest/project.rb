@@ -23,6 +23,14 @@ module SmartcatSDK
         prepare_request(:get, "#{@resource}/#{project_id}")
       end
 
+      def update(project_id, project_model)
+        prepare_request(
+          :put,
+          "#{@resource}/#{project_id}",
+          params: project_model
+        )
+      end
+
       def delete(project_id)
         prepare_request(:delete, "#{@resource}/#{project_id}")
       end
