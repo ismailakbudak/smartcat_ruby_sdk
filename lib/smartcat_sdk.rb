@@ -18,6 +18,7 @@ require 'smartcat_sdk/util/project'
 require 'smartcat_sdk/util/request'
 require 'smartcat_sdk/rest/errors'
 require 'smartcat_sdk/rest/project'
+require 'smartcat_sdk/rest/document'
 
 module SmartcatSDK
   # Your code goes here...

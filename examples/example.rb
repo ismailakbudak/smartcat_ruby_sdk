@@ -3,7 +3,10 @@ require 'smartcat_sdk'
 ACCOUNT_ID = 'ACCOUNT_ID'.freeze
 API_KEY = 'API_KEY'.freeze
 
+# -------------------------------------------------------------
+# -------------------------------------------------------------
 # Project API end-point
+# -------------------------------------------------------------
 # -------------------------------------------------------------
 project = SmartcatSDK::REST::Project.new(ACCOUNT_ID, API_KEY)
 # Get project details
@@ -62,3 +65,13 @@ puts project.restore(PROJECT_ID)
 
 # Post project complete
 puts project.complete(PROJECT_ID)
+
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+# Document API end-point
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+document = SmartcatSDK::REST::Document.new(ACCOUNT_ID, API_KEY)
+# Delete documents
+DOCUMENT_IDS = %w[2048153_9 2048153_7].freeze
+puts document.delete(DOCUMENT_IDS)
