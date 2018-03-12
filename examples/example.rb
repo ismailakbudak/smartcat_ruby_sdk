@@ -42,3 +42,7 @@ puts project.statistics(PROJECT_ID)
 
 # Post project statistics build
 puts project.statistics_build(PROJECT_ID)
+
+# Post add target language to project
+puts project.add_language(PROJECT_ID, 'de')
+puts project.add_language(PROJECT_ID, 'it')

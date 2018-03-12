@@ -42,6 +42,13 @@ module SmartcatSDK
       def statistics_build(project_id)
         prepare_request(:post, "#{@resource}/#{project_id}/statistics/build")
       end
+
+      def add_language(project_id, target_language)
+        prepare_request(
+          :post,
+          "#{@resource}/language?projectId=#{project_id}&targetLanguage=#{target_language}"
+        )
+      end
     end
   end
 end

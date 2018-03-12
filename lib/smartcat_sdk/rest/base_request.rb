@@ -82,9 +82,10 @@ module SmartcatSDK
 
       class Builder
         # rubocop:disable Metrics/MethodLength
+        # rubocop:disable Metrics/AbcSize
         def self.handle(type, response)
           if response.is_a?(Net::HTTPClientError)
-            raise SmartcatSDK::REST::RequestError.new(response, response['code'])
+            raise SmartcatSDK::REST::RequestError.new(response.body, response.code)
           end
           if response.body && !response.body.empty?
             builder_class = Builder.const_get(type.to_s.capitalize)
@@ -97,6 +98,7 @@ module SmartcatSDK
           end
         end
         # rubocop:enable Metrics/MethodLength
+        # rubocop:enable Metrics/AbcSize
 
         class Body
           def self.result(body)
