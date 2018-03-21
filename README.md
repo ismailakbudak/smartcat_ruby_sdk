@@ -1,6 +1,6 @@
 # Smartcat Ruby Sdk
 
-* [API Documentation](https://smartcat.ai/api/methods)
+* [API Documentation](https://smartcat.ai/api/methods/#/)
 * [Examples](https://github.com/ismailakbudak/smartcat_ruby_sdk/tree/develop/examples)
 
 ## Installation
