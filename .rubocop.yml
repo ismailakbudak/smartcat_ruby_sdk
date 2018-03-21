@@ -1,0 +1,19 @@
+AllCops:
+  Include:
+    - 'Rakefile'
+    - 'Gemfile'
+  Exclude:
+    - tmp/**/*
+
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 110
+  Exclude:
+    - 'Gemfile'
+    - 'smartcat_sdk.gemspec'
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 10

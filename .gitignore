@@ -12,3 +12,9 @@
 
 # RubyMine files
 .idea/
+
+# Result package
+*.gem
+
+# Ignore secret files
+.pronto.yml
