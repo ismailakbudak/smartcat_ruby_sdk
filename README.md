@@ -1,8 +1,7 @@
-# SmartcatSDK
+# Smartcat Ruby Sdk
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/smartcat_sdk`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+* [API Documentation](https://smartcat.ai/api/methods)
+* [Examples](https://github.com/ismailakbudak/smartcat_ruby_sdk/tree/develop/examples)
 
 ## Installation
 
@@ -20,24 +19,28 @@ Or install it yourself as:
 
     $ gem install smartcat_sdk
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+    $ bundle exec ruby examples/examples.rb
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+# Contributing
 
-## Contributing
+Once you've made your great commits:
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/smartcat_sdk. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+1. Fork Project
+2. Create a topic branch - git checkout -b my_branch
+3. Push to your branch - git push origin my_branch
+4. Create a Pull Request from your branch
+5. That's it!
 
-## License
+# Credits
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+![lab2023](http://lab2023.com/assets/images/named-logo.png)
 
-## Code of Conduct
+- Builder is maintained and funded by [lab2023 - information technologies](http://lab2023.com/)
+- Thank you to all the [contributors!](../../graphs/contributors)
+- The names and logos for lab2023 are trademarks of lab2023, inc.
 
-Everyone interacting in the SmartcatSDK project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/smartcat_sdk/blob/master/CODE_OF_CONDUCT.md).
+# License
+
+Copyright 2016 lab2023 – information technologies
