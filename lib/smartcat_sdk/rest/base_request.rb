@@ -16,9 +16,9 @@ module SmartcatSDK
       ##
       # Prepare http request
       # :reek:TooManyStatements { enabled: false }
-      def prepare_request(method, path, params: {}, headers: {})
+      def prepare_request(method, path, params: {}, headers: {}, version: 'v1')
         request_path = @config.host
-        request_path += "/api/integration/v1/#{path}"
+        request_path += "/api/integration/#{version}/#{path}"
         uri = URI.parse(request_path)
         uri.query = URI.encode_www_form(params) if %w[get delete].include?(method.to_s)
         request = SmartcatSDK::Util::Request.prepare(headers, method, params, uri)

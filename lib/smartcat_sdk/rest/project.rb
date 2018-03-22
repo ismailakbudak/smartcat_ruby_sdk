@@ -39,6 +39,10 @@ module SmartcatSDK
         prepare_request(:get, "#{@resource}/#{project_id}/statistics")
       end
 
+      def statistics_v2(project_id)
+        prepare_request(:get, "#{@resource}/#{project_id}/statistics", version: 'v2')
+      end
+
       def statistics_build(project_id)
         prepare_request(:post, "#{@resource}/#{project_id}/statistics/build")
       end
