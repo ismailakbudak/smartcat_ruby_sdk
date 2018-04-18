@@ -1,0 +1,213 @@
+types:
+  -
+    "name": "doc"
+    "ocr": false
+    "mime-type": "application/msword"
+  -
+    "name": "docx"
+    "ocr": false
+    "mime-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  -
+    "name": "txt"
+    "ocr": false
+    "mime-type": "text/plain"
+  -
+    "name": "rtf"
+    "ocr": false
+    "mime-type": "application/rtf"
+  -
+    "name": "odt"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "xlsx"
+    "ocr": false
+    "mime-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  -
+    "name": "xls"
+    "ocr": false
+    "mime-type": "application/vnd.ms-excel"
+  -
+    "name": "ppt"
+    "ocr": false
+    "mime-type": "application/vnd.ms-powerpoint"
+  -
+    "name": "pptx"
+    "ocr": false
+    "mime-type": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+  -
+    "name": "potx"
+    "ocr": false
+    "mime-type": "application/vnd.openxmlformats-officedocument.presentationml.template"
+  -
+    "name": "pps"
+    "ocr": false
+    "mime-type": "application/vnd.ms-powerpoint"
+  -
+    "name": "ppsx"
+    "ocr": false
+    "mime-type": "application/vnd.openxmlformats-officedocument.presentationml.slideshow"
+  -
+    "name": "odp"
+    "ocr": false
+    "mime-type": "application/vnd.oasis.opendocument.presentation"
+  -
+    "name": "ttx"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "resx"
+    "ocr": false
+    "mime-type": "application/xml"
+  -
+    "name": "pdf"
+    "ocr": true
+    "mime-type": "application/pdf"
+  -
+    "name": "bmp"
+    "ocr": true
+    "mime-type": "application/octet-stream"
+  -
+    "name": "dcx"
+    "ocr": true
+    "mime-type": "application/octet-stream"
+  -
+    "name": "pcx"
+    "ocr": true
+    "mime-type": "application/octet-stream"
+  -
+    "name": "png"
+    "ocr": true
+    "mime-type": "image/png"
+  -
+    "name": "jp2"
+    "ocr": true
+    "mime-type": "image/jpeg"
+  -
+    "name": "jpc"
+    "ocr": true
+    "mime-type": "image/jpeg"
+  -
+    "name": "jpg"
+    "ocr": true
+    "mime-type": "image/jpeg"
+  -
+    "name": "jpeg"
+    "ocr": true
+    "mime-type": "image/jpeg"
+  -
+    "name": "jfif"
+    "ocr": true
+    "mime-type": "image/jpeg"
+  -
+    "name": "tif"
+    "ocr": true
+    "mime-type": "image/tiff"
+  -
+    "name": "tiff"
+    "ocr": true
+    "mime-type": "image/tiff"
+  -
+    "name": "gif"
+    "ocr": true
+    "mime-type": "image/gif"
+  -
+    "name": "djvu"
+    "ocr": true
+    "mime-type": "application/octet-stream"
+  -
+    "name": "djv"
+    "ocr": true
+    "mime-type": "application/octet-stream"
+  -
+    "name": "jb2"
+    "ocr": true
+    "mime-type": "application/octet-stream"
+  -
+    "name": "srt"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "html"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "htm"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "po"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "pot"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "xlf"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "xliff"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "sdlxliff"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "mqxliff"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "xml"
+    "ocr": false
+    "mime-type": "application/xml"
+  -
+    "name": "yml"
+    "ocr": false
+    "mime-type": "text/yaml"
+  -
+    "name": "json"
+    "ocr": false
+    "mime-type": "application/json"
+  -
+    "name": "tjson"
+    "ocr": false
+    "mime-type": "application/json"
+  -
+    "name": "inx"
+    "ocr": false
+    "mime-type": "application/octet-stream"
+  -
+    "name": "php"
+    "ocr": false
+    "mime-type": "text/php"
+  -
+    "name": "inc"
+    "ocr": false
+    "mime-type": "text/php"
+  -
+    "name": "strings"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "dita"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "zip"
+    "ocr": false
+    "mime-type": "application/zip"
+  -
+    "name": "properties"
+    "ocr": false
+    "mime-type": "text/plain"
+  -
+    "name": "idml"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
+    "name": "mif"
+    "ocr": false
+    "mime-type": "text/plain"

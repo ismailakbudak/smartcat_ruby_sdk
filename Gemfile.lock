@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    smartcat_sdk (0.1.0)
+    smartcat_sdk (1.0.1)
       mime-types (~> 3.0)
       multi_json (~> 1.13, >= 1.13.1)
       multipart-post (~> 2.0)
