@@ -7,7 +7,7 @@ require 'date'
 Gem::Specification.new do |spec|
   spec.name          = 'smartcat_sdk'
   spec.version       = SmartcatSDK::VERSION
-  spec.authors       = ['İsmail Akbudak']
+  spec.authors       = ['Ismail Akbudak']
   spec.email         = ['ismail.akbudak@lab2023.com']
   spec.summary       = 'SmartCat Ruby SDK.'
   spec.description   = 'SmartCat API SDK for ruby & ruby on rails.'
