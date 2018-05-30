@@ -22,6 +22,7 @@ require 'smartcat_sdk/rest/errors'
 require 'smartcat_sdk/rest/client'
 require 'smartcat_sdk/rest/project'
 require 'smartcat_sdk/rest/document'
+require 'smartcat_sdk/rest/translation_memory'
 
 module SmartcatSDK
   # Your code goes here...

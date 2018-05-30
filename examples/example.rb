@@ -97,3 +97,31 @@ params = {
   name: 'John Foo'
 }
 puts client.update(CLIENT_ID, CLIENT_NET_RATE_ID, params)
+
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+# TranslationMemory API end-point
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+translation_memory = SmartcatSDK::REST::TranslationMemory.new(ACCOUNT_ID, API_KEY)
+TRANSLATION_MEMORY_ID = 'EXAMPLE_CLIENT_ID'.freeze
+# Get translation memories
+filters = {
+  batchSize: 1,
+  sourceLanguage: 'tr',
+  targetLanguage: 'de',
+  clientId: CLIENT_ID,
+  searchName: 'Second'
+}
+puts translation_memory.all(filters)
+# Get translation memory with id
+puts translation_memory.get(TRANSLATION_MEMORY_ID)
+# Create translation memory
+params = {
+  name: 'Test Second',
+  sourceLanguage: 'tr',
+  targetLanguages: %w[de en is],
+  description: 'Test',
+  clientId: CLIENT_ID
+}
+puts translation_memory.create(params)
