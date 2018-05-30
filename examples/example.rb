@@ -78,3 +78,22 @@ document = SmartcatSDK::REST::Document.new(ACCOUNT_ID, API_KEY)
 # Delete documents
 DOCUMENT_IDS = %w[2048153_9 2048153_7].freeze
 puts document.delete(DOCUMENT_IDS)
+
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+# Client API end-point
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+client = SmartcatSDK::REST::Client.new(ACCOUNT_ID, API_KEY)
+CLIENT_ID = 'EXAMPLE_CLIENT_ID'.freeze
+CLIENT_NET_RATE_ID = 'EXAMPLE_CLIENT_NET_RATE_ID'.freeze
+# Create client
+name = 'John Foe'
+puts client.create(name)
+# Get client
+puts client.get(CLIENT_ID)
+# Update client -- TODO: does not work now or does not update name field
+params = {
+  name: 'John Foo'
+}
+puts client.update(CLIENT_ID, CLIENT_NET_RATE_ID, params)
