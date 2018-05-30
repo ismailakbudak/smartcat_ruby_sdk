@@ -5,6 +5,53 @@ API_KEY = 'API_KEY'.freeze
 
 # -------------------------------------------------------------
 # -------------------------------------------------------------
+# Client API end-point
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+client = SmartcatSDK::REST::Client.new(ACCOUNT_ID, API_KEY)
+CLIENT_ID = 'EXAMPLE_CLIENT_ID'.freeze
+CLIENT_NET_RATE_ID = 'EXAMPLE_CLIENT_NET_RATE_ID'.freeze
+# Create client
+name = 'John Foe'
+puts client.create(name)
+# Get client
+puts client.get(CLIENT_ID)
+# Update client -- TODO: does not work now or does not update name field
+params = {
+    name: 'John Foo'
+}
+puts client.update(CLIENT_ID, CLIENT_NET_RATE_ID, params)
+
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+# TranslationMemory API end-point
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+translation_memory = SmartcatSDK::REST::TranslationMemory.new(ACCOUNT_ID, API_KEY)
+TRANSLATION_MEMORY_ID = 'EXAMPLE_CLIENT_ID'.freeze
+# Get translation memories
+filters = {
+    batchSize: 1,
+    sourceLanguage: 'tr',
+    targetLanguage: 'de',
+    clientId: CLIENT_ID,
+    searchName: 'Second'
+}
+puts translation_memory.all(filters)
+# Get translation memory with id
+puts translation_memory.get(TRANSLATION_MEMORY_ID)
+# Create translation memory
+params = {
+    name: 'Test Second',
+    sourceLanguage: 'tr',
+    targetLanguages: %w[de en is],
+    description: 'Test',
+    clientId: CLIENT_ID
+}
+puts translation_memory.create(params)
+
+# -------------------------------------------------------------
+# -------------------------------------------------------------
 # Project API end-point
 # -------------------------------------------------------------
 # -------------------------------------------------------------
@@ -69,6 +116,16 @@ puts project.restore(PROJECT_ID)
 # Post project complete
 puts project.complete(PROJECT_ID)
 
+# Post update translation memories of project
+translation_memory_models = [
+  {
+    id: TRANSLATION_MEMORY_ID,
+    matchThreshold: 50,
+    isWritable: true
+  }
+]
+puts project.update_translation_memories(PROJECT_ID, translation_memory_models)
+
 # -------------------------------------------------------------
 # -------------------------------------------------------------
 # Document API end-point
@@ -78,50 +135,3 @@ document = SmartcatSDK::REST::Document.new(ACCOUNT_ID, API_KEY)
 # Delete documents
 DOCUMENT_IDS = %w[2048153_9 2048153_7].freeze
 puts document.delete(DOCUMENT_IDS)
-
-# -------------------------------------------------------------
-# -------------------------------------------------------------
-# Client API end-point
-# -------------------------------------------------------------
-# -------------------------------------------------------------
-client = SmartcatSDK::REST::Client.new(ACCOUNT_ID, API_KEY)
-CLIENT_ID = 'EXAMPLE_CLIENT_ID'.freeze
-CLIENT_NET_RATE_ID = 'EXAMPLE_CLIENT_NET_RATE_ID'.freeze
-# Create client
-name = 'John Foe'
-puts client.create(name)
-# Get client
-puts client.get(CLIENT_ID)
-# Update client -- TODO: does not work now or does not update name field
-params = {
-  name: 'John Foo'
-}
-puts client.update(CLIENT_ID, CLIENT_NET_RATE_ID, params)
-
-# -------------------------------------------------------------
-# -------------------------------------------------------------
-# TranslationMemory API end-point
-# -------------------------------------------------------------
-# -------------------------------------------------------------
-translation_memory = SmartcatSDK::REST::TranslationMemory.new(ACCOUNT_ID, API_KEY)
-TRANSLATION_MEMORY_ID = 'EXAMPLE_CLIENT_ID'.freeze
-# Get translation memories
-filters = {
-  batchSize: 1,
-  sourceLanguage: 'tr',
-  targetLanguage: 'de',
-  clientId: CLIENT_ID,
-  searchName: 'Second'
-}
-puts translation_memory.all(filters)
-# Get translation memory with id
-puts translation_memory.get(TRANSLATION_MEMORY_ID)
-# Create translation memory
-params = {
-  name: 'Test Second',
-  sourceLanguage: 'tr',
-  targetLanguages: %w[de en is],
-  description: 'Test',
-  clientId: CLIENT_ID
-}
-puts translation_memory.create(params)

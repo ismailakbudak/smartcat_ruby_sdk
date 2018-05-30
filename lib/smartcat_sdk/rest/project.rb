@@ -63,6 +63,14 @@ module SmartcatSDK
         )
       end
 
+      def update_translation_memories(project_id, translation_memory_models)
+        prepare_request(
+            :post,
+            "#{@resource}/#{project_id}/translationmemories",
+            params: translation_memory_models
+        )
+      end
+
       def cancel(project_id)
         prepare_request(:post, "#{@resource}/cancel?projectId=#{project_id}")
       end
