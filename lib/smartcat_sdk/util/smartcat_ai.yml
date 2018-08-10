@@ -156,6 +156,10 @@ types:
     "ocr": false
     "mime-type": "application/octetstream"
   -
+    "name": "sdlppx"
+    "ocr": false
+    "mime-type": "application/octetstream"
+  -
     "name": "mqxliff"
     "ocr": false
     "mime-type": "application/octetstream"
