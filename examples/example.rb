@@ -179,6 +179,30 @@ puts project.update_translation_memories(PROJECT_ID, translation_memory_models)
 # -------------------------------------------------------------
 # -------------------------------------------------------------
 document = SmartcatSDK::REST::Document.new(ACCOUNT_ID, API_KEY)
+# Assign document to team member
+params = {
+  executives: [
+    {
+      id: 'your_account_team_user_id',
+      wordsCount: 0
+    }
+  ],
+  minWordsCountForExecutive: 0,
+  assignmentMode: 'distributeAmongAll'
+}
+puts document.assign(params, '2048153_9')
+# Assign from team
+params = {
+  documentIds: [
+    '2048153_9'
+  ],
+  stageNumber: 1
+}
+puts document.assign_from_my_team(params)
+# Get document
+puts document.get('2048153_9')
+# Get cross auth url
+puts document.get_auth_url('your_account_team_user_id', '2048153_9')
 # Delete documents
 DOCUMENT_IDS = %w[2048153_9 2048153_7].freeze
 puts document.delete(DOCUMENT_IDS)
