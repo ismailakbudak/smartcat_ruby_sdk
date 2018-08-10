@@ -16,6 +16,42 @@ puts account.mtengines
 
 # -------------------------------------------------------------
 # -------------------------------------------------------------
+# AccountMyTeam API end-point
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+team = SmartcatSDK::REST::AccountMyTeam.new(ACCOUNT_ID, API_KEY)
+# Search team users
+puts team.search
+# Create team user
+params = {
+  email: 'test@gmail.com',
+  firstName: 'Test',
+  lastName: 'Test',
+  externalId: '123',
+  services: [
+    {
+      serviceType: 'translation',
+      sourceLanguage: 'tr',
+      targetLanguage: 'en',
+      pricePerUnit: 1,
+      currency: 'usd',
+      specializations: [
+        'education'
+      ]
+    }
+  ]
+}
+user = team.create(params)
+puts user.inspect
+# Get team user with id
+puts team.get(user['id'])
+# Get team user with external id
+puts team.get_with_external_id('123')
+# Delete user
+puts team.delete(user['id'])
+
+# -------------------------------------------------------------
+# -------------------------------------------------------------
 # Client API end-point
 # -------------------------------------------------------------
 # -------------------------------------------------------------
@@ -29,7 +65,7 @@ puts client.create(name)
 puts client.get(CLIENT_ID)
 # Update client -- TODO: does not work now or does not update name field
 params = {
-    name: 'John Foo'
+  name: 'John Foo'
 }
 puts client.update(CLIENT_ID, CLIENT_NET_RATE_ID, params)
 
@@ -42,22 +78,22 @@ translation_memory = SmartcatSDK::REST::TranslationMemory.new(ACCOUNT_ID, API_KE
 TRANSLATION_MEMORY_ID = 'EXAMPLE_CLIENT_ID'.freeze
 # Get translation memories
 filters = {
-    batchSize: 1,
-    sourceLanguage: 'tr',
-    targetLanguage: 'de',
-    clientId: CLIENT_ID,
-    searchName: 'Second'
+  batchSize: 1,
+  sourceLanguage: 'tr',
+  targetLanguage: 'de',
+  clientId: CLIENT_ID,
+  searchName: 'Second'
 }
 puts translation_memory.all(filters)
 # Get translation memory with id
 puts translation_memory.get(TRANSLATION_MEMORY_ID)
 # Create translation memory
 params = {
-    name: 'Test Second',
-    sourceLanguage: 'tr',
-    targetLanguages: %w[de en is],
-    description: 'Test',
-    clientId: CLIENT_ID
+  name: 'Test Second',
+  sourceLanguage: 'tr',
+  targetLanguages: %w[de en is],
+  description: 'Test',
+  clientId: CLIENT_ID
 }
 puts translation_memory.create(params)
 

@@ -9,7 +9,7 @@ module SmartcatSDK
       end
 
       def detail
-        prepare_request('get', "#{@resource}")
+        prepare_request('get', @resource)
       end
 
       def mtengines

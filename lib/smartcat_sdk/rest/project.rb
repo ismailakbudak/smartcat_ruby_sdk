@@ -39,6 +39,7 @@ module SmartcatSDK
         prepare_request(:get, "#{@resource}/#{project_id}/statistics")
       end
 
+      # :reek:UncommunicativeMethodName { enabled: false }
       def statistics_v2(project_id)
         prepare_request(:get, "#{@resource}/#{project_id}/statistics", version: 'v2')
       end
@@ -65,9 +66,9 @@ module SmartcatSDK
 
       def update_translation_memories(project_id, translation_memory_models)
         prepare_request(
-            :post,
-            "#{@resource}/#{project_id}/translationmemories",
-            params: translation_memory_models
+          :post,
+          "#{@resource}/#{project_id}/translationmemories",
+          params: translation_memory_models
         )
       end
 

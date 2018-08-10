@@ -16,8 +16,8 @@ module SmartcatSDK
         prepare_request('post', "#{@resource}/create", params: params)
       end
 
-      def update(id, netRateId, params)
-        prepare_request('put', "#{@resource}/#{id}/set?netRateId=#{netRateId}", params: params)
+      def update(id, net_rate_id, params)
+        prepare_request('put', "#{@resource}/#{id}/set?netRateId=#{net_rate_id}", params: params)
       end
     end
   end

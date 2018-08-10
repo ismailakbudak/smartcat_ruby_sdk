@@ -4,4 +4,4 @@ character_limit:
 
 summary_character_limit:
   enabled: true
-  number: 50
+  number: 60

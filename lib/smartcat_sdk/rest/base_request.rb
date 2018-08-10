@@ -16,6 +16,7 @@ module SmartcatSDK
       ##
       # Prepare http request
       # :reek:TooManyStatements { enabled: false }
+      # :reek:LongParameterList { enabled: false }
       def prepare_request(method, path, params: {}, headers: {}, version: 'v1')
         request_path = @config.host
         request_path += "/api/integration/#{version}/#{path}"
