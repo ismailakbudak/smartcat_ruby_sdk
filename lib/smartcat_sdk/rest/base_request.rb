@@ -17,15 +17,17 @@ module SmartcatSDK
       # Prepare http request
       # :reek:TooManyStatements { enabled: false }
       # :reek:LongParameterList { enabled: false }
-      def prepare_request(method, path, params: {}, headers: {}, version: 'v1')
+      # rubocop:disable Metrics/ParameterLists
+      def prepare_request(method, path, params: {}, headers: {}, version: 'v1', format: :json)
         request_path = @config.host
         request_path += "/api/integration/#{version}/#{path}"
         uri = URI.parse(request_path)
         uri.query = URI.encode_www_form(params) if %w[get delete].include?(method.to_s)
         request = SmartcatSDK::Util::Request.prepare(headers, method, params, uri)
         request.basic_auth(@user, @password)
-        connect_and_send(request)
+        connect_and_send(request, format: format)
       end
+      # rubocop:enable Metrics/ParameterLists
 
       private
 
@@ -64,7 +66,7 @@ module SmartcatSDK
       # <tt>@last_request</tt> and <tt>@last_response</tt> to allow for
       # inspection later.
       # :reek:TooManyStatements { enabled: false }
-      def connect_and_send(request, type: :json)
+      def connect_and_send(request, format: :json)
         @last_request = request
         retries_left = @config.retry_limit
         begin
@@ -77,20 +79,20 @@ module SmartcatSDK
           retries_left -= 1
           retry
         end
-        Builder.handle(type, response)
+        Builder.handle(format, response)
       end
       # rubocop:enable Metrics/MethodLength
 
       class Builder
         # rubocop:disable Metrics/MethodLength
         # rubocop:disable Metrics/AbcSize
-        def self.handle(type, response)
+        def self.handle(format, response)
           if response.is_a?(Net::HTTPClientError)
             raise SmartcatSDK::REST::RequestError.new(response.body, response.code)
           end
           if response.body && !response.body.empty?
-            builder_class = Builder.const_get(type.to_s.capitalize)
-            builder_class.result(response.body)
+            builder_class = Builder.const_get(format.to_s.capitalize)
+            builder_class.result(response)
           elsif response.is_a?(Net::HTTPBadRequest)
             {
               message: 'Bad request',
@@ -101,15 +103,21 @@ module SmartcatSDK
         # rubocop:enable Metrics/MethodLength
         # rubocop:enable Metrics/AbcSize
 
+        class Response
+          def self.result(response)
+            response
+          end
+        end
+
         class Body
-          def self.result(body)
-            body
+          def self.result(response)
+            response.body
           end
         end
 
         class Json
-          def self.result(body)
-            MultiJson.load(body)
+          def self.result(response)
+            MultiJson.load(response.body)
           end
         end
       end

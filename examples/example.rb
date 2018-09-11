@@ -206,3 +206,23 @@ puts document.get_auth_url('your_account_team_user_id', '2048153_9')
 # Delete documents
 DOCUMENT_IDS = %w[2048153_9 2048153_7].freeze
 puts document.delete(DOCUMENT_IDS)
+
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+# DocumentExport API end-point
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+document_export = SmartcatSDK::REST::DocumentExport.new(ACCOUNT_ID, API_KEY)
+# Create document export task
+params = {
+  documentIds: %w[
+    2883908_7
+    2883907_7
+  ],
+  type: 'target',
+  stageNumber: 1
+}
+
+document_export_task = document_export.create(params)
+# Get document export task
+puts document_export.get(document_export_task['id'])
